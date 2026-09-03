@@ -1,0 +1,117 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/build",
+      "!**/.next",
+      "!**/node_modules",
+      "!**/coverage",
+      "!**/drizzle",
+      "!**/*.d.ts",
+      "!**/.turbo"
+    ]
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "arrowParentheses": "always"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "a11y": {
+        "preset": "recommended"
+      },
+      "correctness": {
+        "preset": "recommended",
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error"
+      },
+      "style": {
+        "preset": "recommended",
+        "noNonNullAssertion": "warn",
+        "useImportType": "error",
+        "useConst": "error"
+      },
+      "suspicious": {
+        "preset": "recommended",
+        "noExplicitAny": "warn",
+        "noConsole": { "level": "warn", "options": { "allow": ["log"] } }
+      },
+      "complexity": {
+        "preset": "recommended"
+      },
+      "nursery": {
+        "useSortedClasses": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "apps/api/**",
+        "**/*.controller.ts",
+        "**/*.service.ts",
+        "**/*.module.ts",
+        "**/*.guard.ts"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useImportType": "off"
+          },
+          "suspicious": {
+            "noConsole": { "level": "off", "options": { "allow": ["log"] } }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["apps/web/**", "packages/ui/**"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useButtonType": "error",
+            "useKeyWithClickEvents": "error",
+            "noSvgWithoutTitle": "warn"
+          },
+          "correctness": {
+            "useExhaustiveDependencies": "warn",
+            "useJsxKeyInIterable": "error"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    }
+  ]
+}

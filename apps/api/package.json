@@ -4,16 +4,18 @@
   "private": true,
   "scripts": {
     "build": "nest build",
-    "dev": "nest start --watch",
-    "start": "node dist/main",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "check-types": "tsc --noEmit"
+    "dev": "env-cmd -f ../../.env nest start --watch",
+    "start": "env-cmd -f ../../.env node dist/main",
+    "start:debug": "env-cmd -f ../../.env nest start --debug --watch",
+    "check-types": "tsc --noEmit",
+    "lint": "biome lint ."
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^12.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@repo/env": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },

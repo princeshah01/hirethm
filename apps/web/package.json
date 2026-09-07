@@ -4,10 +4,11 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
-    "build": "next build",
-    "start": "next start",
-    "check-types": "next typegen && tsc --noEmit"
+    "dev": "env-cmd -f ../../.env next dev --port 3000",
+    "build": "env-cmd -f ../../.env next build",
+    "start": "env-cmd -f ../../.env next start",
+    "check-types": "next typegen && tsc --noEmit",
+    "lint": "biome lint ."
   },
   "dependencies": {
     "@repo/ui": "workspace:*",

@@ -5,7 +5,10 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**", "dist/**"],
+      // Env vars that affect build output — Turbo hashes these into the cache key
+      // so a cached build is never reused across different env values.
+      "env": ["NODE_ENV"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]
@@ -18,6 +21,9 @@
       "dependsOn": ["build"],
       "cache": false,
       "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
     }
   }
 }

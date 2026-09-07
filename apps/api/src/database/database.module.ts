@@ -1,29 +1,9 @@
-import { Global, Logger, Module, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
-import { db, pool } from './database.providers';
-
-export const DRIZZLE = Symbol('DRIZZLE');
+import { Global, Module } from '@nestjs/common';
+import { DatabaseService } from './database.service';
 
 @Global()
 @Module({
-  providers: [{ provide: DRIZZLE, useValue: db }],
-  exports: [DRIZZLE],
+  providers: [DatabaseService],
+  exports: [DatabaseService],
 })
-export class DatabaseModule implements OnModuleInit, OnModuleDestroy {
-  private readonly logger = new Logger(DatabaseModule.name);
-
-  async onModuleInit() {
-    try {
-      await pool.query('SELECT 1');
-    } catch (err) {
-      this.logger.error(
-        'Failed to connect to the database',
-        err instanceof Error ? err.stack : err,
-      );
-      throw err;
-    }
-  }
-
-  async onModuleDestroy() {
-    await pool.end();
-  }
-}
+export class DatabaseModule {}

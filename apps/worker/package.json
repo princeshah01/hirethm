@@ -1,0 +1,23 @@
+{
+  "name": "worker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "env-cmd -f ../../.env tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "env-cmd -f ../../.env node dist/index.js",
+    "check-types": "tsc --noEmit",
+    "lint": "biome lint ."
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "bullmq": "^6.3.4",
+    "ioredis": "^6.0.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "26.3.0",
+    "tsx": "^4.19.2",
+    "typescript": "^6.0.0"
+  }
+}
